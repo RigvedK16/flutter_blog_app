@@ -8,6 +8,9 @@ class CommentViewModel extends ChangeNotifier {
   final Map<int, List<CommentModel>> _comments = {};
   get comments => _comments;
 
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
+
   Future<void> fetch(int postId) async {
     _comments[postId] = await commentService.readAll(postId);
     notifyListeners();

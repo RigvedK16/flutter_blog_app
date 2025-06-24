@@ -13,6 +13,9 @@ class PostViewModel extends ChangeNotifier {
 
   late String username;
 
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
+
   void fetch() async {
     _posts = await service.readAll();
     notifyListeners();
@@ -24,6 +27,8 @@ class PostViewModel extends ChangeNotifier {
     required userId,
   }) async {
     try {
+      _isLoading = true;
+      notifyListeners();
       final model = CreatePostModel(
         userId: userId,
         title: title,
@@ -34,8 +39,10 @@ class PostViewModel extends ChangeNotifier {
       _posts.add(createdPost);
     } catch (err) {
       print('$err');
+    } finally {
+      _isLoading = false;
+      notifyListeners();
     }
-    notifyListeners();
   }
 
   Future<void> updatePost({
@@ -44,12 +51,15 @@ class PostViewModel extends ChangeNotifier {
     required String description,
   }) async {
     int index = _posts.indexOf(post);
+    _isLoading = true;
+    notifyListeners();
     final updatedPost = post.copyWith(
       title: title,
       description: description,
       updatedAt: DateTime.now(),
     );
     await service.updateDatabase(updatedPost);
+    _isLoading = false;
     // List<PostModel> updatedList = _posts;
     // updatedList[index] = updatedPost;
     // _posts = updatedList;

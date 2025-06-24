@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:post_comments_using_localdb/features/comment/model/comment_model.dart';
 import 'package:post_comments_using_localdb/features/comment/view/Dialogs/comment_dialog_helper.dart';
-import 'package:post_comments_using_localdb/features/comment/view/Widgets/create_comment.dart';
+import 'package:post_comments_using_localdb/features/comment/view/create_comment.dart';
 import 'package:post_comments_using_localdb/features/comment/view_model/comment_view_model.dart';
 import 'package:post_comments_using_localdb/features/post/model/post_model.dart';
 import 'package:provider/provider.dart';

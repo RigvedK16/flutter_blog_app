@@ -53,12 +53,13 @@ class _CommentWidgetState extends State<CommentWidget> {
               ),
             ],
           ),
-
-          SizedBox(height: 10),
           Text(
             widget.comment.comment,
             style: Theme.of(context).textTheme.bodySmall,
           ),
+          SizedBox(height: 5),
+          if (widget.comment.updatedAt != null)
+            Text('(Edited)', style: TextStyle(color: Colors.black45)),
         ],
       ),
     );

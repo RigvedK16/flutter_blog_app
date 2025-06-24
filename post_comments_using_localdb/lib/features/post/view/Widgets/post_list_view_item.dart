@@ -4,6 +4,7 @@ import 'package:post_comments_using_localdb/features/User/model/user_model.dart'
 import 'package:post_comments_using_localdb/features/User/view_model/user_view_model.dart';
 import 'package:post_comments_using_localdb/features/post/model/post_model.dart';
 import 'package:post_comments_using_localdb/features/post/view/Widgets/edit_delete_dropdown.dart';
+import 'package:post_comments_using_localdb/features/post/view/Widgets/showEditedStatus.dart';
 import 'package:provider/provider.dart';
 
 class PostListViewItem extends StatefulWidget {
@@ -65,17 +66,14 @@ class _PostListViewItemState extends State<PostListViewItem> {
               EditDeleteDropdown(user: user, post: widget.post),
             ],
           ),
-          SizedBox(height: 16),
+          SizedBox(height: 8),
           Text(
             widget.post.description,
             style: Theme.of(context).textTheme.bodySmall,
             overflow: TextOverflow.ellipsis,
           ),
           SizedBox(height: 16),
-          Text(
-            DateFormat("EEEE, d MMMM yyyy").format(widget.post.createdAt),
-            style: TextStyle(fontSize: 10, color: Colors.black45),
-          ),
+          Showeditedstatus(post: widget.post),
         ],
       ),
     );
