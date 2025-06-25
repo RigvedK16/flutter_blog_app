@@ -18,8 +18,11 @@ class LocalDatabaseService {
     }
   }
 
-  Future<List<PostModel>> readAll() async {
-    final res = await db.rawQuery('SELECT * FROM Post WHERE deletedAt IS NULL');
+  Future<List<PostModel>> readAll(String? query) async {
+    final res = await db.rawQuery(
+      "SELECT * FROM Post WHERE deletedAt IS NULL"
+      "${query != null && query.trim().isNotEmpty ? " AND title LIKE '%$query%'" : ""}",
+    );
     return res.map((map) => PostModel.fromDatabase(map)).toList();
   }
 

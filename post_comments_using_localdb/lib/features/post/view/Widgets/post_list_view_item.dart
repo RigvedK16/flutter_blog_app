@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:post_comments_using_localdb/features/User/model/user_model.dart';
 import 'package:post_comments_using_localdb/features/User/view_model/user_view_model.dart';
 import 'package:post_comments_using_localdb/features/post/model/post_model.dart';

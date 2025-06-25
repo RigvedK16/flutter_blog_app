@@ -16,9 +16,16 @@ class PostViewModel extends ChangeNotifier {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
+  String? _query;
+
   void fetch() async {
-    _posts = await service.readAll();
+    _posts = await service.readAll(_query);
     notifyListeners();
+  }
+
+  void search(String query) async {
+    _query = query;
+    fetch();
   }
 
   Future<void> createPost({

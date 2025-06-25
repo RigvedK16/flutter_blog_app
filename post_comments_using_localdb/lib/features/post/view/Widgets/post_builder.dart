@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:post_comments_using_localdb/features/User/model/user_model.dart';
 import 'package:post_comments_using_localdb/features/User/service/local_database_service_user.dart';
-import 'package:post_comments_using_localdb/features/User/view_model/user_view_model.dart';
 import 'package:post_comments_using_localdb/features/post/model/post_model.dart';
 import 'package:post_comments_using_localdb/features/post/service/local_database_service.dart';
 import 'package:post_comments_using_localdb/features/post/view/Widgets/post_list_view_item.dart';
@@ -48,6 +47,14 @@ class _PostBuilderState extends State<PostBuilder> {
   Widget build(BuildContext context) {
     return Consumer<PostViewModel>(
       builder: (context, vm, child) {
+        if (vm.posts.isEmpty) {
+          return Center(
+            child: Text(
+              'Nothing to show...',
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+          );
+        }
         return ListView.builder(
           scrollDirection: Axis.vertical,
           itemCount: vm.posts.length,

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:post_comments_using_localdb/features/post/view/Widgets/post_builder.dart';
 import 'package:post_comments_using_localdb/features/post/view/create_post.dart';
+import 'package:post_comments_using_localdb/features/post/view_model/post_view_model.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   final String username;
@@ -25,9 +27,30 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      body: Padding(
-        padding: EdgeInsets.all(20),
-        child: PostBuilder(userId: widget.id, username: widget.username),
+      body: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.all(20),
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    decoration: InputDecoration(hintText: "search by Title..."),
+                    onChanged: (query) {
+                      context.read<PostViewModel>().search(query);
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.all(20),
+              child: PostBuilder(userId: widget.id, username: widget.username),
+            ),
+          ),
+        ],
       ),
     );
   }
